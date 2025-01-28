@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { Download } from 'lucide-react';
 
 export default function Home() {
   const [images, setImages] = useState<string[]>([]);
@@ -35,6 +36,23 @@ export default function Home() {
     }
   };
 
+  const handleDownload = async (imageUrl: string, pageNumber: number) => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `page-${pageNumber}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+    }
+  };
+
   return (
     <main className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
@@ -64,7 +82,18 @@ export default function Home() {
             <div className="w-full grid gap-8">
               {images.map((image, index) => (
                 <div key={index} className="border rounded-lg p-4 shadow-md">
-                  <h2 className="text-xl font-semibold mb-4">Page {index + 1}</h2>
+                  <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xl font-semibold">Page {index + 1}</h2>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleDownload(image, index + 1)}
+                      className="hover:bg-slate-100"
+                      title="Download image"
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                  </div>
                   <Image
                     src={image}
                     alt={`Page ${index + 1}`}

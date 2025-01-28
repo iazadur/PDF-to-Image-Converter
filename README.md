@@ -1,37 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF to Image Converter
 
-## Getting Started
+A modern web application built with Next.js that converts PDF files into high-quality PNG images. Each page of the PDF is converted into a separate image that can be viewed and downloaded individually.
 
-First, run the development server:
+## Features
 
+- 🚀 Built with Next.js 14/15
+- 💅 Modern UI with Tailwind CSS and shadcn/ui
+- 🖼️ High-quality image conversion
+- 📥 Individual page downloads
+- 🔄 Automatic cleanup of temporary files
+- 📱 Responsive design
+- 🛡️ Server-side processing for better security
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js 18.x or later
+- GraphicsMagick (`apt-get install graphicsmagick` on Ubuntu/Debian)
+
+## Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/pdf-to-image.git
+cd pdf-to-image
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Click the "Upload PDF" button
+2. Select a PDF file from your computer
+3. Wait for the conversion process to complete
+4. View and download individual pages as PNG images
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [shadcn/ui](https://ui.shadcn.com/) - UI components
+- [pdf2pic](https://www.npmjs.com/package/pdf2pic) - PDF conversion
+- [pdf-lib](https://pdf-lib.js.org/) - PDF processing
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# PDF-to-Image-Converter
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [pdf2pic](https://www.npmjs.com/package/pdf2pic) for PDF to image conversion
+- [shadcn/ui](https://ui.shadcn.com/) for beautiful UI components
