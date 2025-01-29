@@ -13,8 +13,14 @@ export default function Home() {
     if (!e.target.files?.[0]) return;
     
     setLoading(true);
+    setImages([]); // Clear previous images
     try {
       const file = e.target.files[0];
+      // Add file size validation
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        throw new Error('File size too large (max 5MB)');
+      }
+      
       const formData = new FormData();
       formData.append('file', file);
 
@@ -24,13 +30,19 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to convert PDF');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to convert PDF');
       }
 
       const data = await response.json();
       setImages(data.images);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error converting PDF:', error);
+      if (error instanceof Error) {
+        alert(error.message); // Show error to user
+      } else {
+        alert('An unknown error occurred');
+      }
     } finally {
       setLoading(false);
     }

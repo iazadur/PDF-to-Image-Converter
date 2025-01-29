@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { NextRequest, NextResponse } from 'next/server';
 import { fromPath } from 'pdf2pic';
 import path from 'path';
@@ -50,8 +51,11 @@ export async function POST(request: NextRequest) {
     const pageImages: string[] = [];
 
     for (let i = 1; i <= pageCount; i++) {
-      await convert(i);
-      pageImages.push(`/temp/${uniqueId}/page.${i}.png`);
+      const result = await convert(i, true);
+      console.log(result);
+      // @ts-expect-error
+      const base64 = `data:image/png;base64,${result.base64}`;
+      pageImages.push(base64);
     }
 
     // Clean up temporary PDF file
